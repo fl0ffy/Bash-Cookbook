@@ -1,4 +1,6 @@
-uthor:                    John Bernat
+#!/bin/bash
+#####################################################
+# Author:                    John Bernat
 # Date:                       25Mar2016
 # Description:            Manage Users
 # Input parameters:
