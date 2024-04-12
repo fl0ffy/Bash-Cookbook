@@ -1,0 +1,1 @@
+*/5 * * * * root for i in $(eval cd /var/log/audit ; ls audit.log?*); do mv $i /mount/var/log/audit/$(eval date +%Y%m%d%H%M)-$i; done
