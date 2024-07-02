@@ -1,0 +1,31 @@
+[ req ]
+
+default_md = sha256
+
+prompt = no
+req_extensions = req_ext
+distinguished_name = req_distinguished_name
+
+[ req_distinguished_name ]
+
+commonName = service.subj.net.local
+countryName = US
+stateOrProvinceName = .
+localityName = .
+organizationName = .
+0.organizationalUnitName = ou1
+1.organizationalUnitName = ou2
+
+
+[ req_ext ]
+
+keyUsage=critical,keyEncipherment
+extendedKeyUsage=critical,serverAuth,clientAuth
+
+subjectAltName = @alt_names
+
+[ alt_names ]
+
+DNS.0 = service1.subj.net.local
+DNS.1 = service2.subj.net.local
+DNS.2 = service3.subj.net.local
