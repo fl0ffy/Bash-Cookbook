@@ -8,15 +8,13 @@ if [ $# -ne 1 ]; then
 fi
 
 
-MY_AUTHENTICATOR_NAME="<INSERT MFA IDENTITY>"
 DEFAULT_PROFILE="default"
-DEFAULT_ACCOUNT="<INSERT AWS ACCOUNT NUMBER>"
-ARN_MFA="arn:aws:iam::${DEFAULT_ACCOUNT}:mfa/${MY_AUTHENTICATOR_NAME}"
 TOKEN_DURATION=86400 #24 hours
 MFA_SOURCE_PROFILE="<INSERT AWS CONFIG PROFILE NAME FOR MFA SESSION>"
 
-
-# Get the credentials from account
+# Get users MFA Identity
+ARN_MFA=$(aws iam list-mfa-devices --output text --profile ${DEFAULT_PROFILE} | awk '{ print $3 }')
+# Get the credentials from the DSI account
 AWS_SESSION_TOKEN=$(aws sts get-session-token --duration-seconds $TOKEN_DURATION --serial-number $ARN_MFA --token-code $1 --profile ${DEFAULT_PROFILE} --output text)
 
 
